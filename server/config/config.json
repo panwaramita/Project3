@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "mclivo6o7a79wzfi",
+    "password": "xyomam9hazwquarz",
+    "database": "mev9b8nzrxniuday",
+    "host": "frwahxxknm9kwy6c.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "090981",
+    "database": "memories_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "mclivo6o7a79wzfi",
+    "password": "xyomam9hazwquarz",
+    "database": "mev9b8nzrxniuday",
+    "host": "frwahxxknm9kwy6c.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql"
+  }
+}
