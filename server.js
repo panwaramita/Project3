@@ -5,17 +5,17 @@ var cors=require('cors');
 // Requiring passport as we've configured it
 var passport = require("/config/passport");
 const router=require('/routes/memories');
-// Setting up port and requiring models for syncing
+// Setting up port and requiring models for syncingx
 var PORT = process.env.PORT || 5000;
 // var db = require("./models");
 const db=require("./models");
 // Creating express app and configuring middleware needed for authentication
 var app = express();
-
-console.log(process.env.NODE_ENV);
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("/client/build"));
 }
