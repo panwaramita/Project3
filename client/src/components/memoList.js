@@ -28,7 +28,7 @@ const MemoList=(props)=>{
     setPage(1);
     const date=event.target.value;
     console.log(date);
-    const res = await fetch(`http://localhost:5000/data/filter?date=`+encodeURIComponent(date)+"&&userId="+props.history.location.state.id,
+    const res = await fetch(`/data/filter?date=`+encodeURIComponent(date)+"&&userId="+props.history.location.state.id,
     {
         method: "GET"
     });
@@ -60,7 +60,7 @@ const MemoList=(props)=>{
    async function fetchData(){
     if(!check)
     {
-    const res = await fetch(`http://localhost:5000/data/read?id=`+props.history.location.state.id,
+    const res = await fetch(`/data/read?id=`+props.history.location.state.id,
     {
         method: "GET"
     });

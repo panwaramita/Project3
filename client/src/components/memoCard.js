@@ -99,6 +99,7 @@ const handleDelete = async() => {
           newUserfunction();
       window.location.href="/list";
     setOpenCard(false);
+    
   })
     }    
 }

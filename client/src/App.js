@@ -2,7 +2,7 @@ import './App.css';
 import Search from "./components/memoSearch"
 import List from "./components/memoList"
 import SignIn from "./components/login"
-import {HashRouter as Router,Route} from "react-router-dom";
+import {BrowserRouter as Router,Route} from "react-router-dom";
 function App() {
   return (
     <div className="App" >
