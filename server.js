@@ -13,9 +13,6 @@ const db=require("./models");
 var app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
 // We need to use sessions to keep track of our user's login status
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -27,6 +24,13 @@ require("./routes/api-routes.js")(app);
 app.use("/data",router);
 // Syncing our database and logging a message to the user upon success
 //connection
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+app.use(express.static(__dirname + '/'));
+app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, 'index.html'))
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
