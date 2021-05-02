@@ -61,6 +61,7 @@ const MemoList=(props)=>{
    async function fetchData(){
     if(!check)
     {
+     
     const res = await fetch(`/data/read?id=`+props.history.location.state.id,
     {
         method: "GET"
@@ -71,10 +72,12 @@ const MemoList=(props)=>{
     if(memo.length)
     {
       document.getElementById("memory").style.display="none";
+      // document.getElementById("allCards").style.display="block";
     }
     else
     {
       document.getElementById("memory").style.display="block";
+      document.getElementById("allCards").style.display="none";
     }
     if(memo.length)
     {
@@ -198,10 +201,11 @@ const MemoList=(props)=>{
       <button style={{marginTop:"14px"}} className="refresh" title="Refresh" onClick={handleRefresh}><RefreshIcon style={{color:"black"}}/></button>
       </Grid>
          </Grid>            
-    <Grid container   alignitems="stretch" spacing={0}>
+    <Grid id="allCards" container   alignitems="stretch" spacing={0}>
     {(holdCard.length)?(holdCard.map((data)=>(
                 <Grid  item xs={12} sm={12} lg={4} style={{marginBottom:"70px"}}>
                     <MemoCard onChange={()=>{
+                      setCheck(false);
                       if(child==false)
                       {
                         setChild(true)
@@ -210,7 +214,6 @@ const MemoList=(props)=>{
                       {
                         setChild(false)
                       }
-                      alert(child);
                       }} key={data.id} card={data}></MemoCard>
                     </Grid>) )):<h1  style={{display:"none"}}>No data</h1>
            }

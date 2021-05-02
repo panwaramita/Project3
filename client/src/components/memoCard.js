@@ -52,7 +52,7 @@ const MemoCard=(props)=>{
 const handleDelete = async() => {
   await API.deleteMemories(props.card.id)
   .then((data) => {
-      console.log(data);
+      setDeleteCard(false);
       props.onChange();
 })  
   };
@@ -100,6 +100,7 @@ const handleDelete = async() => {
           console.log(data);
           newUserfunction();
           setOpenCard(false);
+          setSuccess(false);
             props.onChange()
          
    
