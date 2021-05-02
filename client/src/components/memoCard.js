@@ -21,10 +21,12 @@ import API from "../utils/API";
 import memoryContext from "../utils/memoryContext";
 import Slide from '@material-ui/core/Slide';
 import "./styles.css";
+import {useHistory} from "react-router-dom";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 const MemoCard=({card})=>{
+  const history=new useHistory();
   const {newUserfunction}=useContext(memoryContext);
   const [openCard,setOpenCard]=useState();
   const [updateTitle,setUpdateTitle]=useState();
@@ -98,7 +100,7 @@ const handleDelete = async() => {
           console.log(data);
           newUserfunction();
           setOpenCard(false);
-          window.location.href = "/list";
+          window.location = "/list";
    
     
   })

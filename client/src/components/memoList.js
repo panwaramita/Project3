@@ -194,7 +194,7 @@ const MemoList=(props)=>{
         }}
         onChange={handlefilter}
       />
-      <button style={{marginTop:"14px"}} class="refresh" title="Refresh" onClick={handleRefresh}><RefreshIcon style={{color:"black"}}/></button>
+      <button style={{marginTop:"14px"}} className="refresh" title="Refresh" onClick={handleRefresh}><RefreshIcon style={{color:"black"}}/></button>
       </Grid>
          </Grid>            
     <Grid container   alignitems="stretch" spacing={0}>
