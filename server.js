@@ -20,16 +20,17 @@ app.use(passport.session());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
-app.use(express.static(__dirname + '/'));
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, 'index.html'))
+
 // Requiring our routes
 // require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
 app.use("/data",router);
 // Syncing our database and logging a message to the user upon success
 //connection
-
+app.use(express.static(__dirname + '/'));
+app.get('*', function (request, response){
+    response.sendFile(path.resolve(__dirname, 'index.html'))
+});
 
 db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
