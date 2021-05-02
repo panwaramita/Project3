@@ -183,7 +183,7 @@ const MemoList=(props)=>{
         <div>
          <Header username={props.history.location.state.username} id={props.history.location.state.id} />
          <Grid container   alignitems="stretch" spacing={0} className={classes.root}>
-           <Grid item xs={12} style={{backgroundColor:"white"}}>
+           <Grid item xs={12} style={{backgroundColor:"white",textAlign:"center"}}>
          <TextField style={{marginTop:"2px"}}
         id="date"
         label="Search"
