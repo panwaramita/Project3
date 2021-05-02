@@ -51,7 +51,7 @@ const handleDelete = async() => {
   await API.deleteMemories(card.id)
   .then((data) => {
       console.log(data);
-  window.location.reload();
+      window.location.href = "/list";
 })  
   };
 
@@ -97,8 +97,9 @@ const handleDelete = async() => {
       .then((data) => {
           console.log(data);
           newUserfunction();
-          window.location.reload();
-    setOpenCard(false);
+          setOpenCard(false);
+          window.location.href = "/list";
+   
     
   })
     }    
