@@ -1,7 +1,7 @@
 // Requiring necessary npm packages
 var express = require("express");
 var session = require("express-session");
-var cors=require('cors');
+const path = require('path');
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
 const router=require('./routes/memories');
@@ -11,7 +11,6 @@ var PORT = process.env.PORT || 5000;
 const db=require("./models");
 // Creating express app and configuring middleware needed for authentication
 var app = express();
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 if (process.env.NODE_ENV === 'production') {
