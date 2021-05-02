@@ -9,6 +9,7 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 const MemoList=(props)=>{
   const date=new Date();
   const [holdCard,setholdCard]=useState([]);
+  const[child,setChild]=useState(false);
     const classes = useStyles();
     const [page, setPage] = React.useState(1);
     const [pageCount, setPageCount] = React.useState(1);
@@ -178,7 +179,7 @@ const MemoList=(props)=>{
     }
    }
    fetchData();    
-  },[page,first,filter,check]);
+  },[page,first,filter,check,child]);
     return(
         <div>
          <Header username={props.history.location.state.username} id={props.history.location.state.id} />
@@ -200,7 +201,17 @@ const MemoList=(props)=>{
     <Grid container   alignitems="stretch" spacing={0}>
     {(holdCard.length)?(holdCard.map((data)=>(
                 <Grid  item xs={12} sm={12} lg={4} style={{marginBottom:"70px"}}>
-                    <MemoCard key={data.id} card={data}></MemoCard>
+                    <MemoCard onChange={()=>{
+                      if(child==false)
+                      {
+                        setChild(true)
+                      }
+                      else
+                      {
+                        setChild(false)
+                      }
+                      alert(child);
+                      }} key={data.id} card={data}></MemoCard>
                     </Grid>) )):<h1  style={{display:"none"}}>No data</h1>
            }
 </Grid>

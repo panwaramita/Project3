@@ -25,7 +25,7 @@ import {useHistory} from "react-router-dom";
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
-const MemoCard=({card})=>{
+const MemoCard=(props)=>{
   const history=new useHistory();
   const {newUserfunction}=useContext(memoryContext);
   const [openCard,setOpenCard]=useState();
@@ -35,7 +35,7 @@ const MemoCard=({card})=>{
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
   const [deleteCard, setDeleteCard] =useState(false);
-
+  const [parent,setParent]=useState(false);
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -50,10 +50,10 @@ const MemoCard=({card})=>{
 };
     
 const handleDelete = async() => {
-  await API.deleteMemories(card.id)
+  await API.deleteMemories(props.card.id)
   .then((data) => {
       console.log(data);
-      window.location.href = "/list";
+      props.onChange();
 })  
   };
 
@@ -65,9 +65,9 @@ const handleDelete = async() => {
     setSuccess(false);
   };
   const handleCardOpen = () => {
-  setCardID(card.id);  
-  setUpdateTitle(card.title);
-  setUpdateDesc(card.description);
+  setCardID(props.card.id);  
+  setUpdateTitle(props.card.title);
+  setUpdateDesc(props.card.description);
     setOpenCard(true);
   };
 
@@ -100,7 +100,8 @@ const handleDelete = async() => {
           console.log(data);
           newUserfunction();
           setOpenCard(false);
-          window.location = "/list";
+            props.onChange()
+         
    
     
   })
@@ -108,8 +109,8 @@ const handleDelete = async() => {
 }
     const classes = useStyles();
   
-    let image=card.imageurl;
-    let date=moment(card.createdAt).format("DD-MM-YYYY");
+    let image=props.card.imageurl;
+    let date=moment(props.card.createdAt).format("DD-MM-YYYY");
     return(
         <div>
           <Dialog 
@@ -143,7 +144,7 @@ const handleDelete = async() => {
         </IconButton>
         </div>
         }
-        title={card.title}
+        title={props.card.title}
         subheader={date}
       />
       <Dialog id={cardID}
@@ -172,7 +173,7 @@ const handleDelete = async() => {
           </Button>
         </DialogActions>
       </Dialog>
-          <TextField  style={{display:"none"}} id="createTitle" value={card.title} className={classes.input} name="Title" variant="outlined" label="Caption"  />
+          <TextField  style={{display:"none"}} id="createTitle" value={props.card.title} className={classes.input} name="Title" variant="outlined" label="Caption"  />
       <CardMedia><img onClick={handleClickOpen} className={classes.media} alt="Mainimage" src={image}/></CardMedia>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         
@@ -188,7 +189,7 @@ const handleDelete = async() => {
       </Dialog>
       <CardContent>
         <Typography className={classes.scrollBox} id="readDescreption" variant="body2" color="textSecondary">
-         {card.description}
+         {props.card.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>       
