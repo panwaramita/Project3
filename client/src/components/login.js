@@ -59,16 +59,17 @@ const [loginPassword,setloginPassword]=useState();
 const history=new useHistory();
 const handleformSubmit=(e)=>{
   e.preventDefault();
-  if(signupUserName==="")
+  if(document.getElementById("username").value === "")
   {
     document.getElementById("spanUserName").style.display="block";
   }
-  else if(signupEmail==="")
+  else if(document.getElementById("email").value === "")
   {
-    document.getElementById("spanTitle").style.display="block";
+    document.getElementById("spanTitle").textContent="Enter email";
   }
-  else if(signupPassword==="")
-  {
+  else if(document.getElementById("password").value === "")
+  {    
+  alert(document.getElementById("password").value)
     document.getElementById("spanPassword").style.display="block";
   }
   else
@@ -152,7 +153,7 @@ console.log(imageOne)
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="loginEmail"
             label="Username"
             name="email"
             autoComplete="email"
@@ -170,7 +171,7 @@ console.log(imageOne)
             name="password"
             label="Password"
             type="password"
-            id="password"
+            id="loginPassword"
             autoComplete="current-password"
             value={loginPassword}
             onChange={(e)=>{setloginPassword(e.target.value)}}
