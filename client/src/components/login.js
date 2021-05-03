@@ -68,7 +68,7 @@ const handleformSubmit=(e)=>{
     document.getElementById("spanTitle").style.display="block";
     document.getElementById("spanTitle").textContent="Enter email";
   }
-  else if(document.getElementById("singupPassword").value === "")
+  else if(document.getElementById("signupPasswords").value === "")
   {    
     document.getElementById("spanPassword").style.display="block";
   }
@@ -259,7 +259,7 @@ console.log(imageOne)
             name="password"
             label="Password"
             type="password"
-            id="signupPassword"
+            id="signupPasswords"
             value={signupPassword}
             onChange={(e)=>{
               document.getElementById("spanPassword").style.display="none";

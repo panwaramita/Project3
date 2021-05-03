@@ -75,12 +75,12 @@ const handleDelete = async() => {
     setOpenCard(false);
   };
   const handleCardSave = async() => {
-    if(updateTitle=="")
+    if(document.getElementById("updateTitleCard").value==="")
     {
       document.getElementById("spanCaption").style.display = "block";
 
     }
-    else if(updateDesc=="")
+    else if(document.getElementById("updateDescCard").value==="")
     {
       document.getElementById("spanMessage").style.display = "block";
 
@@ -159,9 +159,9 @@ const handleDelete = async() => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-          <TextField  value={updateTitle} onChange={(e)=>{document.getElementById("spanCaption").style.display = "none";setUpdateTitle(e.target.value)}} className={classes.input} name="Caption" variant="outlined" label="Caption" fullWidth />
+          <TextField  value={updateTitle} onChange={(e)=>{document.getElementById("spanCaption").style.display = "none";setUpdateTitle(e.target.value)}} id="updateTitleCard" className={classes.input} name="Caption" variant="outlined" label="Caption" fullWidth />
           <div style={{ width: "100%", height: "30px" }}><span id="spanCaption" className={classes.validateTitle}>* Select an caption</span></div>
-          <TextField value={updateDesc} onChange={(e)=>{document.getElementById("spanMessage").style.display = "none";setUpdateDesc(e.target.value)}}  className={classes.input} name="Description" variant="outlined" label="Message" fullWidth />
+          <TextField value={updateDesc} onChange={(e)=>{document.getElementById("spanMessage").style.display = "none";setUpdateDesc(e.target.value)}} id="updateDescCard" className={classes.input} name="Description" variant="outlined" label="Message" fullWidth />
           <div style={{ width: "100%", height: "30px" }}><span id="spanMessage" className={classes.validateTitle}>* Select an message</span></div>
           </DialogContentText>
         </DialogContent>
