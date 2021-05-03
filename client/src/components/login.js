@@ -4,20 +4,15 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import image from "../images/DigitalDiary2.png";
 import API from "../utils/loginAPI";
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '5px',
     borderColor: "black",
     backgroundColor: 'white',
-    // marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -47,9 +41,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   logo: {
-    float: 'left',
+    float: 'center',
     height: '150px',
-    marginTop: '20px',
+    // marginTop: '20px',
     marginLeft: '20px',
   },
 
@@ -85,8 +79,7 @@ const handleformSubmit=(e)=>{
     document.getElementById("spanPassword").style.display="block";
   }
   else
-  {
-    
+  {  
     document.getElementById("spanTitle").style.display="none";
     document.getElementById("spanUserName").style.display="none";
     document.getElementById("spanPassword").style.display="none";
