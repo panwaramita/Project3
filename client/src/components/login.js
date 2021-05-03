@@ -59,17 +59,17 @@ const [loginPassword,setloginPassword]=useState();
 const history=new useHistory();
 const handleformSubmit=(e)=>{
   e.preventDefault();
-  if(document.getElementById("username").value === "")
+  if(document.getElementById("signupUsername").value === "")
   {
     document.getElementById("spanUserName").style.display="block";
   }
-  else if(document.getElementById("email").value === "")
+  else if(document.getElementById("signupEmail").value === "")
   {
+    document.getElementById("spanTitle").style.display="block";
     document.getElementById("spanTitle").textContent="Enter email";
   }
-  else if(document.getElementById("password").value === "")
+  else if(document.getElementById("singupPassword").value === "")
   {    
-  alert(document.getElementById("password").value)
     document.getElementById("spanPassword").style.display="block";
   }
   else
@@ -110,6 +110,21 @@ const handleformSubmit=(e)=>{
 }
 const handleformLoginSubmit=async(e)=>{
   e.preventDefault();
+  
+  if(document.getElementById("loginEmail").value === "")
+  {
+    document.getElementById("spanLoginTitle").style.display="block";
+    document.getElementById("spanLoginTitle").textContent="Enter Email";
+  }
+  else if(document.getElementById("loginPassword").value === "")
+  {
+    document.getElementById("spanLoginPassword").style.display="block";
+  }
+  else
+  {
+    const re = /\S+@\S+\.\S+/;
+  if(re.test(loginEmail))
+  {
   const login={
     password:loginPassword,
     email:loginEmail
@@ -117,6 +132,7 @@ const handleformLoginSubmit=async(e)=>{
  await API.login(login)
   .then((data)=>{
     document.getElementById("spanLoginTitle").style.display="none";
+    document.getElementById("spanLoginPassword").style.display="none";
     console.log("the result is",data)
     history.push({pathname:"/list",
     state:{username:data.data.username, id:data.data.id}
@@ -126,6 +142,13 @@ const handleformLoginSubmit=async(e)=>{
         document.getElementById("spanLoginTitle").style.display="block";
         document.getElementById("spanLoginTitle").textContent="Email not exist";
        })
+      }
+      else
+      {
+        document.getElementById("spanLoginTitle").style.display="block";
+        document.getElementById("spanLoginTitle").textContent="Invalid Email";
+      }
+    }
   }
 
   const classes = useStyles();
@@ -174,8 +197,9 @@ console.log(imageOne)
             id="loginPassword"
             autoComplete="current-password"
             value={loginPassword}
-            onChange={(e)=>{setloginPassword(e.target.value)}}
-          />         
+            onChange={(e)=>{document.getElementById("spanLoginPassword").style.display="none";setloginPassword(e.target.value)}}
+          />        
+          <div style={{ width: "100%", height: "20px",marginLeft:"12px" }}><span style={{display:"none",fontStyle:'italic',color:"red",float:"left",marginBottom:"3px"}} id="spanLoginPassword">Enter Password</span></div>
           <Button
             type="submit"
             fullWidth
@@ -203,10 +227,9 @@ console.log(imageOne)
             margin="normal"
             required
             fullWidth
-            id="username"
+            id="signupUsername"
             label="Username"
             name="username"
-            autoComplete="username"
             autoFocus
             value={signupUserName}
             onChange={(e)=>{document.getElementById("spanUserName").style.display="none"
@@ -218,10 +241,9 @@ console.log(imageOne)
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="signupEmail"
             label="Email Address"
             name="email"
-            autoComplete="email"
             autoFocus
             value={signupEmail}
             onChange={(e)=>{
@@ -237,8 +259,8 @@ console.log(imageOne)
             name="password"
             label="Password"
             type="password"
-            id="password"
-            autoComplete="current-password"  value={signupPassword}
+            id="signupPassword"
+            value={signupPassword}
             onChange={(e)=>{
               document.getElementById("spanPassword").style.display="none";
               setSignUpPassword(e.target.value)}}
