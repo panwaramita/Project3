@@ -6,6 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -22,12 +27,12 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: '5px',
     borderColor: "black",
     backgroundColor: 'white',
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     marginLeft: '10%',
-    marginTop:"1px"
+    // marginTop:"1px"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -51,12 +56,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignIn() {
+const [open, setOpen] = useState(false);
   const [signupUserName,setSignUpUserName]=useState();
 const [signupEmail,setSignUpEmail]=useState();
 const [signupPassword,setSignUpPassword]=useState();
 const [loginEmail,setloginEmail]=useState();
 const [loginPassword,setloginPassword]=useState();
 const history=new useHistory();
+const handleClear=()=>{
+  setloginEmail('');
+  setloginPassword('');
+  document.getElementById("spanLoginTitle").style.display="none";
+  document.getElementById("spanLoginPassword").style.display="none";
+}
 const handleformSubmit=(e)=>{
   e.preventDefault();
   if(document.getElementById("signupUsername").value === "")
@@ -93,8 +105,8 @@ const handleformSubmit=(e)=>{
           setSignUpEmail('');
           setSignUpUserName('');
           setSignUpPassword('');
-          setInterval(document.getElementById("spanSignUpSuccess").style.display="block",1000);
           document.getElementById("spanTitle").textContent=" ";
+          setOpen(true);
         })
         .catch((err)=>{
                 document.getElementById("spanTitle").style.display="block";
@@ -150,7 +162,9 @@ const handleformLoginSubmit=async(e)=>{
       }
     }
   }
-
+  const handleCardClose = () => {
+    setOpen(false);
+  };
   const classes = useStyles();
 const imageOne = image;
 console.log(imageOne)
@@ -170,6 +184,7 @@ console.log(imageOne)
         <Typography component="h1" variant="h5">
           Log In
         </Typography>
+        
         <form className={classes.form} noValidate onSubmit={handleformLoginSubmit}>
           <TextField
             variant="outlined"
@@ -209,6 +224,7 @@ console.log(imageOne)
           >
             Log In
           </Button>
+        <Button variant="contained" color="secondary" size="large" onClick={handleClear} fullWidth>Clear</Button>
         </form>
       </div>
       </Grid>
@@ -220,7 +236,25 @@ console.log(imageOne)
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <div style={{ width: "100%",marginLeft:"12px" ,backgroundColor:"blue"}}><span style={{fontSize:"40px",display:"none",color:"red",height:"5px"}} id="spanSignUpSuccess">Successfully Signup</span></div>
+        <Dialog 
+        open={open}
+        onClose={handleCardClose}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle style={{ cursor: 'move',textAlign:'center',fontWeight:"bold" }} id="draggable-dialog-title">
+          Successfully SignUp 
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+         <div>A digital diary is a place where you can record personal events and experiences online. Rather than keeping a traditional diary or notebook to express your thoughts and feelings, you can create a diary and make it available anywhere and everywhere, as long as you have access to the internet.</div>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCardClose} color="primary">
+            Ok
+          </Button>
+        </DialogActions>
+      </Dialog>
         <form className={classes.form} noValidate onSubmit={handleformSubmit}> 
           <TextField
             variant="outlined"

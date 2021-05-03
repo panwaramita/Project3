@@ -16,6 +16,16 @@ const Search = (props) => {
   const [description, setDescription] = useState();
   const [imageurl, setImageurl] = useState('');
   const date=new Date();
+  const handleLenghtValidation=(e)=>{
+    const value=document.getElementById("memoTitle").value;
+       if(value.length<=50)
+      setTitle(e.target.value)
+  }
+  const handleDescLenghtValidation=(e)=>{
+    const value=document.getElementById("memoDesc").value;
+       if(value.length<=2000)
+      setDescription(e.target.value)
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (document.getElementById("memoTitle").value === "") {
@@ -72,6 +82,7 @@ const Search = (props) => {
     document.getElementById("memoDesc").value = "";
     document.getElementById("imageFile").value = ""
     document.getElementById("imagePreview").style.display = "none";
+    document.getElementById("spanDesc").style.display = "none";
   }
   return (
     <div className={classes.root}>
@@ -81,11 +92,14 @@ const Search = (props) => {
           <Paper className={classes.paper} style={{ width: "50%", margin: "auto" }}>
             <form autoComplete="off" onSubmit={handleSubmit} noValidate className={classes.form}>
               <Typography varient="h6" >Create a Memory</Typography>
-              <TextField id="memoTitle" value={title} onChange={(e) => { document.getElementById("spanTitle").style.display = "none"; setTitle(e.target.value) }} className={classes.input} name="Caption" variant="outlined" label="caption" fullWidth />
+              <TextField id="memoTitle" value={title}  onChange={(e) => { handleLenghtValidation(e);document.getElementById("spanTitle").style.display = "none"}} className={classes.input} name="Caption" variant="outlined" label="caption" fullWidth />
+              
+              <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 50 Characters</span></div>
               <div style={{ width: "100%", height: "20px" }}><span id="spanTitle" className={classes.validateTitle}>* Enter the caption</span></div>
               <TextField rows={7}
                 rowsMax={10}
-                multiline id="memoDesc" value={description} onChange={(e) => { document.getElementById("spanDesc").style.display = "none"; setDescription(e.target.value) }} className={classes.input} name="message" variant="outlined" label="message" fullWidth />
+                multiline id="memoDesc" value={description} onChange={(e) => { document.getElementById("spanDesc").style.display = "none"; handleDescLenghtValidation(e) }} className={classes.input} name="message" variant="outlined" label="message" fullWidth />
+              <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 2000 Characters</span></div>
               <div style={{ width: "100%", height: "20px" }}><span id="spanDesc" className={classes.validateTitle}>* Enter a message about the image</span></div>
               <div className={classes.fileInput}>
                 <img id="imagePreview" style={{ display: "none", width: "100px", height: "100px" }} src={uploadImage} alt="" />

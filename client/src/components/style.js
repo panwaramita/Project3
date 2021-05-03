@@ -77,6 +77,12 @@ margin:"5px"
     padding: "1rem",
     textAlign:"left"
 },
+validateTitleSearch:{
+  display:"block",
+  color: "red",
+  float:"right",
+  fontStyle:"Italic"
+}
 
 
 }));

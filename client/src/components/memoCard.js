@@ -48,7 +48,16 @@ const MemoCard=(props)=>{
    
     setDeleteCard(true);
 };
-    
+const handleLenghtValidation=(e)=>{
+  const value=document.getElementById("updateTitleCard").value;
+     if(value.length<=50)
+     setUpdateTitle(e.target.value)
+}
+const handleDescLenghtValidation=(e)=>{
+  const value=document.getElementById("updateDescCard").value;
+     if(value.length<=2000)
+    setUpdateDesc(e.target.value)
+}    
 const handleDelete = async() => {
   await API.deleteMemories(props.card.id)
   .then((data) => {
@@ -132,9 +141,9 @@ const handleDelete = async() => {
           </Button>
         </DialogActions>
       </Dialog>
-         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"300px"}}>
+         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"60%"}}>
           <Card className={classes.root}>
-      <CardHeader id="readTitle" style={{color:"blue"}}
+      <CardHeader id="readTitle" style={{color:"blue"}} 
         action={
           <div>
           <IconButton aria-label="settings" >
@@ -148,6 +157,7 @@ const handleDelete = async() => {
         title={props.card.title}
         subheader={date}
       />
+      
       <Dialog id={cardID}
       TransitionComponent={Transition}
         open={openCard}
@@ -159,9 +169,13 @@ const handleDelete = async() => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-          <TextField  value={updateTitle} onChange={(e)=>{document.getElementById("spanCaption").style.display = "none";setUpdateTitle(e.target.value)}} id="updateTitleCard" className={classes.input} name="Caption" variant="outlined" label="Caption" fullWidth />
+          <TextField  value={updateTitle} onChange={(e)=>{document.getElementById("spanCaption").style.display = "none";handleLenghtValidation(e)}} id="updateTitleCard" className={classes.input} name="Caption" variant="outlined" label="Caption" fullWidth />
+          <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 50 Characters</span></div>
           <div style={{ width: "100%", height: "30px" }}><span id="spanCaption" className={classes.validateTitle}>* Select an caption</span></div>
-          <TextField value={updateDesc} onChange={(e)=>{document.getElementById("spanMessage").style.display = "none";setUpdateDesc(e.target.value)}} id="updateDescCard" className={classes.input} name="Description" variant="outlined" label="Message" fullWidth />
+          <TextField  rows={7}
+                rowsMax={10}
+                multiline value={updateDesc} onChange={(e)=>{document.getElementById("spanMessage").style.display = "none";setUpdateDesc(e.target.value)}} id="updateDescCard" className={classes.input} name="Description" variant="outlined" label="Message" fullWidth />
+            <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 2000 Characters</span></div>
           <div style={{ width: "100%", height: "30px" }}><span id="spanMessage" className={classes.validateTitle}>* Select an message</span></div>
           </DialogContentText>
         </DialogContent>
