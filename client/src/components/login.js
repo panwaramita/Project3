@@ -59,15 +59,15 @@ const [loginPassword,setloginPassword]=useState();
 const history=new useHistory();
 const handleformSubmit=(e)=>{
   e.preventDefault();
-  if(signupUserName=="")
+  if(signupUserName==="")
   {
     document.getElementById("spanUserName").style.display="block";
   }
-  else if(signupEmail=="")
+  else if(signupEmail==="")
   {
     document.getElementById("spanTitle").style.display="block";
   }
-  else if(signupPassword=="")
+  else if(signupPassword==="")
   {
     document.getElementById("spanPassword").style.display="block";
   }
