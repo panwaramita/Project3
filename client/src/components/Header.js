@@ -26,7 +26,7 @@ const Header=(props)=>{
     }  
 return(
     <div className={classes.root}>
-<AppBar position="static" fullWidth>
+<AppBar position="fixed" fullWidth>
   <Toolbar>  
   <a onClick={handleLogOut} href="#" class="logoutID" alt="List">Logout</a>
      <div style={{float:"initial"}}>

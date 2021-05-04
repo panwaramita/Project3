@@ -201,7 +201,7 @@ const MemoList=(props)=>{
       <button style={{marginTop:"14px"}} className="refresh" title="Refresh" onClick={handleRefresh}><RefreshIcon style={{color:"black"}}/></button>
       </Grid>
          </Grid>            
-    <Grid id="allCards" container   alignitems="stretch" spacing={0}>
+    <Grid id="allCards" container   alignitems="stretch" spacing={0} style={{marginTop:"20px"}}>
     {(holdCard.length)?(holdCard.map((data)=>(
                 <Grid  item xs={12} sm={12} lg={4} style={{marginBottom:"70px"}}>
                     <MemoCard onChange={()=>{
