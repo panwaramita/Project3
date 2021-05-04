@@ -141,7 +141,7 @@ const handleDelete = async() => {
           </Button>
         </DialogActions>
       </Dialog>
-         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"60%",height:"500px"}}>
+         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"60%"}}>
           <Card className={classes.root}>
       <CardHeader id="readTitle" style={{color:"blue"}} 
         action={
@@ -175,7 +175,7 @@ const handleDelete = async() => {
           <TextField  rows={7}
                 rowsMax={10}
                 multiline value={updateDesc} onChange={(e)=>{document.getElementById("spanMessage").style.display = "none";setUpdateDesc(e.target.value)}} id="updateDescCard" className={classes.input} name="Description" variant="outlined" label="Message" fullWidth />
-            <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 2000 Characters</span></div>
+                        <div style={{ width: "100%", height: "20px" }}><span  className={classes.validateTitleSearch}>Max 2000 Characters</span></div>
           <div style={{ width: "100%", height: "30px" }}><span id="spanMessage" className={classes.validateTitle}>* Select an message</span></div>
           </DialogContentText>
         </DialogContent>
