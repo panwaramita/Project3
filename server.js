@@ -4,11 +4,11 @@ var session = require("express-session");
 const path = require('path');
 // Requiring passport as we've configured it
 var passport = require("./config/passport");
-const router=require('./routes/memories');
+const router = require('./routes/memories');
 // Setting up port and requiring models for syncingx
 var PORT = process.env.PORT || 5000;
 // var db = require("./models");
-const db=require("./models");
+const db = require("./models");
 // Creating express app and configuring middleware needed for authentication
 var app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -20,20 +20,19 @@ app.use(passport.session());
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
-
 // Requiring our routes
 // require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);
-app.use("/data",router);
+app.use("/data", router);
 // Syncing our database and logging a message to the user upon success
 //connection
 app.use(express.static(__dirname + '/'));
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, 'index.html'))
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, 'index.html'))
 });
-
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
+//create the database connection using sequlize
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.", PORT, PORT);
   });
 });
