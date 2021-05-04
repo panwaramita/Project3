@@ -38,8 +38,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from "moment";
 //import API from API.js
 import API from "../utils/API";
-//import memoryContext 
-import memoryContext from "../utils/memoryContext";
 //import slide from material-ui
 import Slide from '@material-ui/core/Slide';
 //import style from style.css
@@ -53,8 +51,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const MemoCard = (props) => {
   //create an instace of useHistory
   const history = new useHistory();
-  //get the context from memoryContext
-  const { newUserfunction } = useContext(memoryContext);
   //state to open the dialog for update
   const [openCard, setOpenCard] = useState();
   //state to update title
