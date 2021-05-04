@@ -141,7 +141,7 @@ const handleDelete = async() => {
           </Button>
         </DialogActions>
       </Dialog>
-         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"60%"}}>
+         <Paper className={classes.paper} style={{margin:"auto",marginTop:"10px",width:"70%"}}>
           <Card className={classes.root}>
       <CardHeader id="readTitle" style={{color:"blue"}} 
         action={
