@@ -144,14 +144,9 @@ const MemoCard = (props) => {
       //call API to update memories in the database
       await API.updateMemories(memories)
         .then((data) => {
-          console.log(data);
-          newUserfunction();
           setOpenCard(false);
           setSuccess(false);
-          props.onChange()
-
-
-
+          props.onChange();
         })
     }
   }
